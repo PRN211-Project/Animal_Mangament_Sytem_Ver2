@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animal_Management_System", "Animal_Management_System\Animal_Management_System.csproj", "{B009B84B-D30F-4177-A215-91675BEAB553}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animal_Management_System_Form", "Animal_Management_System_Form\Animal_Management_System_Form.csproj", "{79F4E279-A931-4359-ABF7-A1DB7A315617}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B009B84B-D30F-4177-A215-91675BEAB553} = {B009B84B-D30F-4177-A215-91675BEAB553}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B009B84B-D30F-4177-A215-91675BEAB553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B009B84B-D30F-4177-A215-91675BEAB553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B009B84B-D30F-4177-A215-91675BEAB553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B009B84B-D30F-4177-A215-91675BEAB553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F4E279-A931-4359-ABF7-A1DB7A315617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F4E279-A931-4359-ABF7-A1DB7A315617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F4E279-A931-4359-ABF7-A1DB7A315617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F4E279-A931-4359-ABF7-A1DB7A315617}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {883B04B8-3B12-4F69-BECE-060544799561}
+	EndGlobalSection
+EndGlobal
