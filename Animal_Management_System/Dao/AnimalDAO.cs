@@ -60,16 +60,18 @@ namespace Animal_Management_System.Dao
 
         public IEnumerable<Animal> GetAnimalByName(string AnimalName)
         {
-            IEnumerable<Animal> result = null;
-            IEnumerable<Animal> animalList = null;
-            var context = new Animal_Management_SystemContext();
-            animalList = context.Animals.ToList();
+            using (_dbContext = new Animal_Management_SystemContext())
+            {
+                IEnumerable<Animal> result = null;
+                IEnumerable<Animal> animalList = null;
+                animalList = _dbContext.Animals.AsNoTracking().ToList();
 
-            var animal = from pro in animalList
-                         where pro.Name.Contains(AnimalName)
-                         select pro;
-            result = animal;
-            return result;
+                var animal = from pro in animalList
+                    where pro.Name.Contains(AnimalName)
+                    select pro;
+                result = animal;
+                return result;
+            }
         }
     }
 }
