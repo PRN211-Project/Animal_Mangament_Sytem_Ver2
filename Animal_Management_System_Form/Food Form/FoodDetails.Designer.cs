@@ -42,44 +42,46 @@ namespace Animal_Management_System_Form.Food_Form
             // lbFoodName
             // 
             this.lbFoodName.AutoSize = true;
-            this.lbFoodName.Location = new System.Drawing.Point(18, 83);
+            this.lbFoodName.Location = new System.Drawing.Point(21, 111);
             this.lbFoodName.Name = "lbFoodName";
-            this.lbFoodName.Size = new System.Drawing.Size(69, 15);
+            this.lbFoodName.Size = new System.Drawing.Size(87, 20);
             this.lbFoodName.TabIndex = 32;
             this.lbFoodName.Text = "Food Name";
             // 
             // lbFoodID
             // 
             this.lbFoodID.AutoSize = true;
-            this.lbFoodID.Location = new System.Drawing.Point(18, 43);
+            this.lbFoodID.Location = new System.Drawing.Point(21, 57);
             this.lbFoodID.Name = "lbFoodID";
-            this.lbFoodID.Size = new System.Drawing.Size(48, 15);
+            this.lbFoodID.Size = new System.Drawing.Size(62, 20);
             this.lbFoodID.TabIndex = 25;
             this.lbFoodID.Text = "Food ID";
             // 
             // txtFoodId
             // 
             this.txtFoodId.Enabled = false;
-            this.txtFoodId.Location = new System.Drawing.Point(122, 40);
+            this.txtFoodId.Location = new System.Drawing.Point(139, 53);
+            this.txtFoodId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFoodId.Name = "txtFoodId";
             this.txtFoodId.ReadOnly = true;
-            this.txtFoodId.Size = new System.Drawing.Size(123, 23);
+            this.txtFoodId.Size = new System.Drawing.Size(248, 27);
             this.txtFoodId.TabIndex = 1;
             // 
             // lbExpiredDate
             // 
             this.lbExpiredDate.AutoSize = true;
-            this.lbExpiredDate.Location = new System.Drawing.Point(18, 123);
+            this.lbExpiredDate.Location = new System.Drawing.Point(21, 164);
             this.lbExpiredDate.Name = "lbExpiredDate";
-            this.lbExpiredDate.Size = new System.Drawing.Size(73, 15);
+            this.lbExpiredDate.Size = new System.Drawing.Size(95, 20);
             this.lbExpiredDate.TabIndex = 29;
             this.lbExpiredDate.Text = "Expired Date";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(18, 166);
+            this.btnSave.Location = new System.Drawing.Point(21, 221);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 23);
+            this.btnSave.Size = new System.Drawing.Size(125, 31);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -87,16 +89,18 @@ namespace Animal_Management_System_Form.Food_Form
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(97, 117);
+            this.dateTimePicker1.Location = new System.Drawing.Point(139, 157);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(248, 27);
             this.dateTimePicker1.TabIndex = 33;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(180, 166);
+            this.btnCancel.Location = new System.Drawing.Point(206, 221);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(109, 23);
+            this.btnCancel.Size = new System.Drawing.Size(125, 31);
             this.btnCancel.TabIndex = 34;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -104,16 +108,17 @@ namespace Animal_Management_System_Form.Food_Form
             // 
             // txtFoodName
             // 
-            this.txtFoodName.Location = new System.Drawing.Point(122, 75);
+            this.txtFoodName.Location = new System.Drawing.Point(139, 100);
+            this.txtFoodName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFoodName.Name = "txtFoodName";
-            this.txtFoodName.Size = new System.Drawing.Size(123, 23);
+            this.txtFoodName.Size = new System.Drawing.Size(248, 27);
             this.txtFoodName.TabIndex = 35;
             // 
             // FoodDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 219);
+            this.ClientSize = new System.Drawing.Size(401, 292);
             this.Controls.Add(this.txtFoodName);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dateTimePicker1);
@@ -122,6 +127,7 @@ namespace Animal_Management_System_Form.Food_Form
             this.Controls.Add(this.txtFoodId);
             this.Controls.Add(this.lbFoodID);
             this.Controls.Add(this.btnSave);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FoodDetails";
             this.Load += new System.EventHandler(this.FoodDetails_Load);
             this.ResumeLayout(false);

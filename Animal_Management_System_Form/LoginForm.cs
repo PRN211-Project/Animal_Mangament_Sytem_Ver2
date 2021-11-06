@@ -39,7 +39,7 @@ namespace Animal_Management_System_Form
             {
                 if (manager.username.Equals(username) && manager.password.Equals(password))
                 {
-                    Form1 menu = new Form1();
+                    Home menu = new Home();
                     menu.Closed += (sender, e) => this.Close();
                     this.Hide();
                     menu.Show();
@@ -49,7 +49,7 @@ namespace Animal_Management_System_Form
                     var employee = employeeRepository.CheckLogin(username, password);
                     if (employee != null)
                     {
-                        Form1 menu = new Form1();
+                        Home menu = new Home();
                         menu.Closed += (sender, e) => this.Close();
                         this.Hide();
                         menu.CurrentEmployee = employee;
@@ -74,6 +74,11 @@ namespace Animal_Management_System_Form
             using StreamReader streamReader = new StreamReader(Path.GetFullPath("appsettings.json"));
             string json = streamReader.ReadToEnd();
             manager = JsonConvert.DeserializeObject<Manager>(json);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace Animal_Management_System_Form
 {
-    partial class Form1
+    partial class Home
     {
         /// <summary>
         ///  Required designer variable.
