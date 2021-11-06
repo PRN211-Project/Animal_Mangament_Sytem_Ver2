@@ -47,6 +47,19 @@ namespace Animal_Management_System_Form
                 else
                 {
                     var employee = employeeRepository.CheckLogin(username, password);
+                    if (employee != null)
+                    {
+                        Form1 menu = new Form1();
+                        menu.Closed += (sender, e) => this.Close();
+                        this.Hide();
+                        menu.CurrentEmployee = employee;
+                        menu.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong Username and Password!!");
+                        return;
+                    }
                 }
             }
         }

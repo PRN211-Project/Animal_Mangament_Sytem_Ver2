@@ -8,12 +8,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Animal_Management_System.Models;
 using FontAwesome.Sharp;
 
 namespace Animal_Management_System_Form
 {
     public partial class Form1 : Form
     {
+        public Employee CurrentEmployee;
         private IconButton currBtn;
         private Panel LeftBorderBtn;
         public Form1()

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Animal_Management_System.Models;
 using Animal_Management_System.Repository;
 using Animal_Management_System.Repository.Implementation;
+using Animal_Management_System_Form.Food_Form;
 
 namespace Animal_Management_System_Form
 {
@@ -41,12 +42,14 @@ namespace Animal_Management_System_Form
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            var index = dataGridView2.CurrentCell.RowIndex;
+            int foodId = Convert.ToInt32(dataGridView2.Rows[index].Cells[0].Value.ToString());
             try
             {
                 if (MessageBox.Show($"Do you sure you want to delete this edible food?", "Delete food", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    var pro = GetFood();
-                    foodRepository.DeleteFood(pro);
+                    var deletefood = foodRepository.GetFoodById(foodId);
+                    foodRepository.DeleteFood(deletefood);
                     loadFood();
                 }
             }
@@ -62,15 +65,22 @@ namespace Animal_Management_System_Form
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
-            try
+            var foodName = txtFoodName.Text;
+            DateTime expireDateTime = dateTimePicker1.Value;
+            if (expireDateTime < DateTime.Now)
             {
-                
-                MessageBox.Show("Added successfully", "Add new food", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Expired Date is lower than today");
+                return;
             }
-            catch (Exception ex)
+
+            if (string.IsNullOrWhiteSpace(foodName))
             {
-                MessageBox.Show(ex.Message, "Added new food", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Enter Food Name please!!");
+                return;
             }
+            foodRepository.AddNewFood(new Food { Name = foodName, ExpiredDate = expireDateTime});
+            loadFood();
+
         }
 
         private void loadFood()
@@ -81,14 +91,11 @@ namespace Animal_Management_System_Form
 
                 source = new BindingSource();
                 source.DataSource = foodList;
+                dataGridView2.DataSource = source;
+                dataGridView2.AllowUserToAddRows = false;
+                dataGridView2.Columns[3].Visible = false;
 
-                txtFoodID.DataBindings.Clear();
-                txtFoodName.DataBindings.Clear();
-                txtExpiredDate.DataBindings.Clear();
-                
-                txtFoodID.DataBindings.Add("Text", source, "Id");
-                txtFoodName.DataBindings.Add("Text", source, "Name");
-                txtExpiredDate.DataBindings.Add("Text", source, "ImportedDateTime");
+               
                 if (foodList.Count() == 0)
                 {
                     btnDelete.Enabled = false;
@@ -103,23 +110,22 @@ namespace Animal_Management_System_Form
                 MessageBox.Show(ex.Message, "Load food");
             }
         }
-        private Food GetFood()
+        
+
+        private void FoodForm_Load(object sender, EventArgs e)
         {
-            Food food = null;
-            try
-            {
-                food = new Food
-                {
-                    Id = int.Parse(txtFoodID.Text),
-                    Name = txtFoodName.Text,
-                    ExpiredDate = DateTime.Parse(txtExpiredDate.Text)
-                };
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Get Food");
-            }
-            return food;
+            loadFood();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var index = dataGridView2.CurrentCell.RowIndex;
+            int foodId = Convert.ToInt32(dataGridView2.Rows[index].Cells[0].Value.ToString());
+
+            FoodDetails form = new FoodDetails();
+            form.updatedFoodId = foodId;
+            form.ShowDialog();
+            loadFood();
         }
     }
 }

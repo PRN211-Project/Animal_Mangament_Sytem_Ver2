@@ -31,8 +31,10 @@ namespace Animal_Management_System.Dao
         {
             using (_dbContext = new Animal_Management_SystemContext())
             {
+                //_dbContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Employee ON");
                 _dbContext.Entry(newEmployee).State = EntityState.Added;
                 _dbContext.SaveChanges();
+                //_dbContext.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Employee OFF");
             }
         }
 
