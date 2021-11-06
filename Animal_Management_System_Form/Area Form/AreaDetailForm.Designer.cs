@@ -35,8 +35,6 @@ namespace Animal_Management_System_Form
             this.txtAreaId = new System.Windows.Forms.TextBox();
             this.txtAreaSquare = new System.Windows.Forms.TextBox();
             this.txtAreaName = new System.Windows.Forms.TextBox();
-            this.btnAnimal = new System.Windows.Forms.Button();
-            this.btnEmployee = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -89,24 +87,6 @@ namespace Animal_Management_System_Form
             this.txtAreaName.Size = new System.Drawing.Size(100, 23);
             this.txtAreaName.TabIndex = 5;
             // 
-            // btnAnimal
-            // 
-            this.btnAnimal.Location = new System.Drawing.Point(25, 149);
-            this.btnAnimal.Name = "btnAnimal";
-            this.btnAnimal.Size = new System.Drawing.Size(89, 42);
-            this.btnAnimal.TabIndex = 6;
-            this.btnAnimal.Text = "View Animals In Area";
-            this.btnAnimal.UseVisualStyleBackColor = true;
-            // 
-            // btnEmployee
-            // 
-            this.btnEmployee.Location = new System.Drawing.Point(159, 149);
-            this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(100, 42);
-            this.btnEmployee.TabIndex = 7;
-            this.btnEmployee.Text = "View Employee In Area";
-            this.btnEmployee.UseVisualStyleBackColor = true;
-            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(25, 213);
@@ -134,8 +114,6 @@ namespace Animal_Management_System_Form
             this.ClientSize = new System.Drawing.Size(284, 282);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnEmployee);
-            this.Controls.Add(this.btnAnimal);
             this.Controls.Add(this.txtAreaName);
             this.Controls.Add(this.txtAreaSquare);
             this.Controls.Add(this.txtAreaId);
@@ -158,8 +136,6 @@ namespace Animal_Management_System_Form
         private System.Windows.Forms.TextBox txtAreaId;
         private System.Windows.Forms.TextBox txtAreaSquare;
         private System.Windows.Forms.TextBox txtAreaName;
-        private System.Windows.Forms.Button btnAnimal;
-        private System.Windows.Forms.Button btnEmployee;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
     }

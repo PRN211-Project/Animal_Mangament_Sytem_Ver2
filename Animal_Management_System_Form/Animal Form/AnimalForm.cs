@@ -11,6 +11,7 @@ namespace Animal_Management_System_Form
 {
     public partial class AnimalForm : UserControl
     {
+        public Employee CurrentEmployee = null;
         private IAnimalRepository animalRepository;
         BindingSource source;
         //Singleton
@@ -47,10 +48,60 @@ namespace Animal_Management_System_Form
 
         private void LoadAnimal()
         {
-            var animalList = animalRepository.GetAllAnimals();
-            try
+            if (CurrentEmployee == null)
             {
+                var animalList = animalRepository.GetAllAnimals();
+                try
+                {
 
+                    source = new BindingSource();
+                    source.DataSource = animalList;
+
+                    txtAnimalID.DataBindings.Clear();
+                    txtAge.DataBindings.Clear();
+                    txtName.DataBindings.Clear();
+                    txtWeight.DataBindings.Clear();
+                    txtArea.DataBindings.Clear();
+                    txtImportedDate.DataBindings.Clear();
+                    txtType.DataBindings.Clear();
+
+                    txtAnimalID.DataBindings.Add("Text", source, "Id");
+                    txtName.DataBindings.Add("Text", source, "Name");
+                    txtWeight.DataBindings.Add("Text", source, "Weight");
+                    txtAge.DataBindings.Add("Text", source, "Age");
+                    txtImportedDate.DataBindings.Add("Text", source, "ImportedDateTime");
+                    txtType.DataBindings.Add("Text", source, "TypeId");
+                    txtArea.DataBindings.Add("Text", source, "AreaId");
+
+                    dgvAnimalManagement.DataSource = null;
+                    dgvAnimalManagement.DataSource = source;
+                    dgvAnimalManagement.Columns[7].Visible = false;
+                    dgvAnimalManagement.Columns[8].Visible = false;
+                    dgvAnimalManagement.Columns[9].Visible = false;
+                    dgvAnimalManagement.AllowUserToAddRows = false;
+
+
+
+                    if (animalList.Count() == 0)
+                    {
+                        ClearText();
+
+                        btnDelete.Enabled = false;
+                    }
+                    else
+                    {
+                        btnDelete.Enabled = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Load animal");
+                }
+            }
+            else
+            {
+                int areaId = CurrentEmployee.AreaId.Value;
+                var animalList = animalRepository.GetAllAnimalsByAreaId(areaId);
                 source = new BindingSource();
                 source.DataSource = animalList;
 
@@ -69,15 +120,13 @@ namespace Animal_Management_System_Form
                 txtImportedDate.DataBindings.Add("Text", source, "ImportedDateTime");
                 txtType.DataBindings.Add("Text", source, "TypeId");
                 txtArea.DataBindings.Add("Text", source, "AreaId");
-
+                txtArea.Enabled = false;
                 dgvAnimalManagement.DataSource = null;
                 dgvAnimalManagement.DataSource = source;
                 dgvAnimalManagement.Columns[7].Visible = false;
                 dgvAnimalManagement.Columns[8].Visible = false;
                 dgvAnimalManagement.Columns[9].Visible = false;
-
-
-
+                dgvAnimalManagement.AllowUserToAddRows = false;
                 if (animalList.Count() == 0)
                 {
                     ClearText();
@@ -89,21 +138,32 @@ namespace Animal_Management_System_Form
                     btnDelete.Enabled = true;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Load animal");
-            }
         }
 
         private void DgvAnimal_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AnimalDetails frm = new AnimalDetails
+            AnimalDetails frm;
+            if (CurrentEmployee == null)
             {
-                Text = "UPDATE ANIMAL",
-                InsertOrUpdate = true,
-                AnimalInfo = GetAnimal(),
-                animalRepository = animalRepository
-            };
+                frm = new AnimalDetails
+                {
+                    Text = "UPDATE ANIMAL",
+                    InsertOrUpdate = true,
+                    AnimalInfo = GetAnimal(),
+                    animalRepository = animalRepository
+                };
+            }
+            else
+            {
+                frm = new AnimalDetails
+                {
+                    Text = "UPDATE ANIMAL",
+                    InsertOrUpdate = true,
+                    AnimalInfo = GetAnimal(),
+                    animalRepository = animalRepository,
+                    CurrentEmployee = this.CurrentEmployee
+                };
+            }
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadAnimal();
@@ -134,7 +194,7 @@ namespace Animal_Management_System_Form
             }
             return animal;
         }
-       
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -156,12 +216,26 @@ namespace Animal_Management_System_Form
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AnimalDetails detail = new AnimalDetails
+            AnimalDetails detail;
+            if (CurrentEmployee != null)
             {
-                Text = "ADD ANIMAL",
-                InsertOrUpdate = false,
-                animalRepository = animalRepository
-            };
+                detail = new AnimalDetails
+                {
+                    Text = "ADD ANIMAL",
+                    InsertOrUpdate = false,
+                    animalRepository = animalRepository,
+                    CurrentEmployee = this.CurrentEmployee
+                };
+            }
+            else
+            {
+                detail = new AnimalDetails
+                {
+                    Text = "ADD ANIMAL",
+                    InsertOrUpdate = false,
+                    animalRepository = animalRepository,
+                };
+            }
             if (detail.ShowDialog() == DialogResult.OK)
             {
                 var animallist = animalRepository.GetAllAnimals();

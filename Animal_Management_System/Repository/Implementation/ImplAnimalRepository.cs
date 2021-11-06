@@ -26,5 +26,7 @@ namespace Animal_Management_System.Repository.Implementation
 
         public IEnumerable<Animal> GetAnimalByName(string AnimalName)
         => animalDAO.GetAnimalByName(AnimalName);
+
+        public List<Animal> GetAllAnimalsByAreaId(int areaId) => animalDAO.GetAllAnimalsByAreaId(areaId);
     }
 }

@@ -25,5 +25,7 @@ namespace Animal_Management_System.Repository.Implementation
         public void DeleteEmployee(Employee deletedEmployee) => employeeDao.DeleteEmployee(deletedEmployee);
         public Employee CheckLogin(string username, string password) => employeeDao.CheckLogin(username, password);
 
+        public List<Employee> GetAllEmployeesByAreaId(int areaId) => employeeDao.GetAllEmployeesByAreaId(areaId);
+
     }
 }

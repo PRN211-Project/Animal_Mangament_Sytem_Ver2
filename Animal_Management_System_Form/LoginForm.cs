@@ -75,10 +75,5 @@ namespace Animal_Management_System_Form
             string json = streamReader.ReadToEnd();
             manager = JsonConvert.DeserializeObject<Manager>(json);
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -16,5 +16,7 @@ namespace Animal_Management_System.Repository
         void DeleteEmployee(Employee deletedEmployee);
 
         Employee CheckLogin(string username, string password);
+
+        List<Employee> GetAllEmployeesByAreaId(int areaId);
     }
 }

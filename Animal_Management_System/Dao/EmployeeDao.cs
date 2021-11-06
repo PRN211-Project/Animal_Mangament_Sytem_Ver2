@@ -64,5 +64,13 @@ namespace Animal_Management_System.Dao
                 return currentEmployee;
             }
         }
+        public List<Employee> GetAllEmployeesByAreaId(int areaId)
+        {
+            using (_dbContext = new Animal_Management_SystemContext())
+            {
+                List<Employee> employees = _dbContext.Employees.Where(e => e.AreaId == areaId).ToList();
+                return employees;
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ using Animal_Management_System.Models;
 using Animal_Management_System.Repository;
 using Animal_Management_System.Repository.Implementation;
 
-namespace Animal_Management_System_Form
+namespace Animal_Management_System_Form.AreaForm
 {
     public partial class AreaForm : UserControl
     {
@@ -41,7 +41,7 @@ namespace Animal_Management_System_Form
             InitializeComponent();
             implAreaRepository = new ImplAreaRepository();
         }
-        
+
 
         /*private void AreaForm_Leave(object sender, EventArgs e)
         {
@@ -73,7 +73,7 @@ namespace Animal_Management_System_Form
                 txtAreaId.DataBindings.Add("Text", source, "AreaId");
                 txtAreaName.DataBindings.Add("Text", source, "Name");
                 txtAreaSquare.DataBindings.Add("Text", source, "Square");
-                
+
 
                 dgvAreaList.DataSource = null;
                 dgvAreaList.DataSource = source;
@@ -96,6 +96,8 @@ namespace Animal_Management_System_Form
                 {
                     col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
+
+                dgvAreaList.AllowUserToAddRows = false;
 
             }
             catch (Exception ex)
@@ -147,7 +149,8 @@ namespace Animal_Management_System_Form
                 };
 
                 return area;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("Wrong Data Type of Square", "Date Input error", MessageBoxButtons.OK);
             }
@@ -225,7 +228,6 @@ namespace Animal_Management_System_Form
                     MessageBox.Show("Error for data type of ID", "Search By ID and Name", MessageBoxButtons.OK);
                 }
             }
-
         }*/
 
         /*private void btnFilter_Click(object sender, EventArgs e)
@@ -271,6 +273,24 @@ namespace Animal_Management_System_Form
             }
         }
 
-        
+        private void btnAnimal_Click(object sender, EventArgs e)
+        {
+            var index = dgvAreaList.CurrentCell.RowIndex;
+            int areaId = Convert.ToInt32(dgvAreaList.Rows[index].Cells[0].Value.ToString());
+            ViewList viewList = new ViewList();
+            viewList.isViewAnimal = true;
+            viewList.areaID = areaId;
+            viewList.ShowDialog();
+        }
+
+        private void btnEmployee_Click(object sender, EventArgs e)
+        {
+            var index = dgvAreaList.CurrentCell.RowIndex;
+            int areaId = Convert.ToInt32(dgvAreaList.Rows[index].Cells[0].Value.ToString());
+            ViewList viewList = new ViewList();
+            viewList.isViewAnimal = false;
+            viewList.areaID = areaId;
+            viewList.ShowDialog();
+        }
     }
 }

@@ -78,40 +78,81 @@ namespace Animal_Management_System_Form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            if (CurrentEmployee != null)
+            {
+                icfood.Visible = false;
+                icArea.Visible = false;
+            }
         }
 
   
         private void iconProfile_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            if (!panel.Controls.Contains(ProfileForm.Instance))
+            if (CurrentEmployee == null)
             {
-                panel.Controls.Add(ProfileForm.Instance);
-                ProfileForm.Instance.Dock = DockStyle.Fill;
-                ProfileForm.Instance.BringToFront();
-                lbchildForm.Text = "Profile";
+                if (!panel.Controls.Contains(ProfileForm.Instance))
+                {
+                    panel.Controls.Add(ProfileForm.Instance);
+                    ProfileForm.Instance.Dock = DockStyle.Fill;
+                    ProfileForm.Instance.BringToFront();
+                    lbchildForm.Text = "Profile";
+                }
+                else
+                {
+                    ProfileForm.Instance.BringToFront();
+                }
             }
             else
             {
-                ProfileForm.Instance.BringToFront();
+                EmployeeForm.Instance.CurrentEmployee = CurrentEmployee;
+                if (!panel.Controls.Contains(EmployeeForm.Instance))
+                {
+                    panel.Controls.Add(EmployeeForm.Instance);
+                    EmployeeForm.Instance.Dock = DockStyle.Fill;
+                    EmployeeForm.Instance.BringToFront();
+                    lbchildForm.Text = "Profile";
+                }
+                else
+                {
+                    EmployeeForm.Instance.BringToFront();
+                }
             }
         }
 
         private void icAnimal_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            if (!panel.Controls.Contains(AnimalForm.Instance))
+            if (CurrentEmployee == null)
             {
-                panel.Controls.Add(AnimalForm.Instance);
-                AnimalForm.Instance.Dock = DockStyle.Fill;
-                AnimalForm.Instance.BringToFront();
-                lbchildForm.Text = "Animal Management";
+                if (!panel.Controls.Contains(AnimalForm.Instance))
+                {
+                    panel.Controls.Add(AnimalForm.Instance);
+                    AnimalForm.Instance.Dock = DockStyle.Fill;
+                    AnimalForm.Instance.BringToFront();
+                    lbchildForm.Text = "Animal Management";
 
+                }
+                else
+                {
+                    AnimalForm.Instance.BringToFront();
+                }
             }
             else
             {
-                AnimalForm.Instance.BringToFront();
+                AnimalForm.Instance.CurrentEmployee = CurrentEmployee;
+                if (!panel.Controls.Contains(AnimalForm.Instance))
+                {
+                    panel.Controls.Add(AnimalForm.Instance);
+                    AnimalForm.Instance.Dock = DockStyle.Fill;
+                    AnimalForm.Instance.BringToFront();
+                    lbchildForm.Text = "Animal Management";
+
+                }
+                else
+                {
+                    AnimalForm.Instance.BringToFront();
+                }
             }
         }
 
@@ -135,17 +176,17 @@ namespace Animal_Management_System_Form
         private void icArea_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            if (!panel.Controls.Contains(AreaForm.Instance))
+            if (!panel.Controls.Contains(AreaForm.AreaForm.Instance))
             {
-                panel.Controls.Add(AreaForm.Instance);
-                AreaForm.Instance.Dock = DockStyle.Fill;
-                AreaForm.Instance.BringToFront();
+                panel.Controls.Add(AreaForm.AreaForm.Instance);
+                AreaForm.AreaForm.Instance.Dock = DockStyle.Fill;
+                AreaForm.AreaForm.Instance.BringToFront();
                 lbchildForm.Text = "Area Management";
 
             }
             else
             {
-                AreaForm.Instance.BringToFront();
+                AreaForm.AreaForm.Instance.BringToFront();
             }
         }
 
@@ -173,6 +214,12 @@ namespace Animal_Management_System_Form
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void icLogout_Click(object sender, EventArgs e)
+        {
+            //Log out
+            Application.Restart();
         }
     }
 }

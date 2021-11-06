@@ -13,6 +13,15 @@ namespace Animal_Management_System.Dao
         {
 
         }
+        public List<Animal> GetAllAnimalsByAreaId(int areaId)
+        {
+            using (_dbContext = new Animal_Management_SystemContext())
+            {
+                var animal = _dbContext.Animals.Where(a => a.AreaId == areaId).ToList();
+                return animal;
+            }
+        }
+
         public Animal GetAnimalById(int animalId)
         {
             using (_dbContext = new Animal_Management_SystemContext())

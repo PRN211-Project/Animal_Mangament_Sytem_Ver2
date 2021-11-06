@@ -120,7 +120,6 @@ namespace Animal_Management_System_Form
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(750, 530);
             this.panel2.TabIndex = 8;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // pictureBox1
             // 

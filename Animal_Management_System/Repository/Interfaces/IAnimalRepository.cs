@@ -15,5 +15,7 @@ namespace Animal_Management_System.Repository
 
         void DeleteAnimal(Animal deletedAnimal);
         public IEnumerable<Animal> GetAnimalByName(string AnimalName);
+
+        List<Animal> GetAllAnimalsByAreaId(int areaId);
     }
 }

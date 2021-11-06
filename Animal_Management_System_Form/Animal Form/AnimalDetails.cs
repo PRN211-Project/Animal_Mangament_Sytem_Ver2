@@ -19,15 +19,14 @@ namespace Animal_Management_System_Form.Animal_Form
         public Animal AnimalInfo { get; set; }
         public bool InsertOrUpdate { get; set; }
 
+        public Employee CurrentEmployee;
         IAreaRepository areaRepository = new ImplAreaRepository();
         public ITypeRepository typeRepository = new ImplTypeRepository();
 
         public AnimalDetails()
         {
             InitializeComponent();
-            var areaList = areaRepository.GetAllAreas();
             cboArea.ValueMember = "AreaId";
-            cboArea.DataSource = areaList;
             DTImportedDate.Value = DateTime.Now;
             var typeList = typeRepository.GetAllTypes();
             cboType.ValueMember = "Id";
@@ -36,6 +35,15 @@ namespace Animal_Management_System_Form.Animal_Form
 
         private void AnimalDetails_Load(object sender, EventArgs e)
         {
+            if (CurrentEmployee == null)
+            {
+                var areaList = areaRepository.GetAllAreas();
+                cboArea.DataSource = areaList;
+            }
+            else
+            {
+                cboArea.Items.Add(CurrentEmployee.AreaId);
+            }
             txtAnimalID.Enabled = false;
 
             if (InsertOrUpdate == true)
@@ -47,7 +55,6 @@ namespace Animal_Management_System_Form.Animal_Form
                 DTImportedDate.Text = AnimalInfo.ImportedDateTime.ToString();
                 cboArea.Text = AnimalInfo.AreaId.ToString();
                 cboType.Text = AnimalInfo.TypeId.ToString();
-
             }
         }
 
@@ -88,7 +95,7 @@ namespace Animal_Management_System_Form.Animal_Form
 
 
 
-            if (InsertOrUpdate == false && Valid == true )
+            if (InsertOrUpdate == false && Valid == true)
             {
                 var animal = new Animal
                 {
@@ -103,9 +110,9 @@ namespace Animal_Management_System_Form.Animal_Form
                 animalRepository.AddNewAnimal(animal);
                 MessageBox.Show("Add animal Successfully!!", "ADD ANIMAL", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                
+
             }
-            if(InsertOrUpdate == true && Valid == true)
+            if (InsertOrUpdate == true && Valid == true)
             {
                 var animal = new Animal
                 {
@@ -125,14 +132,14 @@ namespace Animal_Management_System_Form.Animal_Form
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
-       
+
     }
 
-   
 
-       
-    
+
+
+
 }
